@@ -9,15 +9,15 @@ The purpose of this experiment is to create an environment similar to the one th
 <br />
 <h2>In this home lab I have used a cloud based service (Azure) and used the following tools it provides:</h2>
 
-- <b>Virtual machines (Windows10): I made it vulnerable for outside attacks.</b> 
-- <b>Log Analytics Workspace: To ingest all the logs from the VM.</b>
-- <b>Azure Sentinel (SIEM): I used it to create a map of the attacks.</b>
+- <b>Virtual machines (Windows10):</b> <b1>I made it vulnerable for outside attacks.</b1> 
+- <b>Log Analytics Workspace:</b> <b1>To ingest all the logs from the VM.</b1>
+- <b>Azure Sentinel (SIEM):</b> <b1>I used it to create a map of the attacks.</b1>
 
 
 <h2>Creating and Deploying The VM:</h2>
 
-fter registering to the free Azure services, which gives a free credit of $200, and creating the VM, I have lowered the security of the VM to none by creating a new network security group in the setting of VM. 
-This procedure will allow “any” traffic in the internet into my VM machine.<br/>
+fter registering to the free Azure services, which gives a free credit of $200, and creating the VM, I have lowered the security of the VM to none by creating a new <b><i>network security group</i></b> in the setting of VM. 
+This procedure will allow “any” traffic in the internet into my <b>VM</b> machine.<br/>
 <br />
 <img src="https://i.imgur.com/xDKKrVM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
@@ -26,15 +26,15 @@ This procedure will allow “any” traffic in the internet into my VM machine.<
 
 <h2>Log Analytics Workspaces:</h2>
 
-This is to ingest the Windows Event logs from the VM and create my own custom logs to be able to for a geographical information to discover where attackers are coming from.<br />
+This is to ingest the Windows Event logs from the <b>VM</b> and create my own custom logs to be able to for a geographical information to discover where attackers are coming from.<br />
 <br />
 <img src="https://i.imgur.com/GGsCZPj.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br /><br />
-Then I went on to Microsoft Defender to enable the ability to gather logs from the VM into the Logs Analytics Workspaces.<br />
+Then I went on to Microsoft Defender to enable the ability to gather logs from the <b>VM</b> into the <b>Logs Analytics Workspaces.</b><br />
 <br />
 <img src="https://i.imgur.com/qKtZ0is.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br /><br />
-After that, I connected the VM to the Log Analytics Workspaces.<br />
+After that, I connected the <b>VM</b> to the <b>Log Analytics Workspaces.</b><br />
 <br />
 <img src="https://i.imgur.com/qz1uoI6.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br /><br />
@@ -42,8 +42,8 @@ After that, I connected the VM to the Log Analytics Workspaces.<br />
   
 <h2>Azure Sentinel (SIEM):</h2>
 
-Now, to be able to visualize the attacks’ data, I had to use Azure Sentinel.
-So I had picked the Log Analytics Workspaces that I'd prepared earlier.<br />
+Now, to be able to visualize the attacks’ data, I had to use <b>Azure Sentinel</b>.
+So I picked the <b>Log Analytics Workspace</b> that I'd prepared earlier.<br />
 <br />
 <img src="https://i.imgur.com/VQ8noAc.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br /><br />
@@ -67,7 +67,7 @@ After that, I used the Powershell ISE to run the script I had downloaded earlier
 <br />
 <img src="https://i.imgur.com/h1okYGc.png" height="80%" width="80%" alt="Disk Sanitization Steps"/><br />
 <br><br/>
-All the logs from the run script will be sent to https://ipgeolocation.io/ with the use of the generated API then saved automatically to a file called “failed_rdp”, and to access it I had to type “Run” in Windows search bar and type in this path (Because it’s a hidden file): C:\ProgramData\ <br /><br />
+All the logs from the run script will be sent to https://ipgeolocation.io/ with the use of the generated API then saved automatically to a file called <i>“failed_rdp”</i>, and to access it I had to type “Run” in Windows search bar and type in this path (Because it’s a hidden file): C:\ProgramData\ <br /><br />
 <img src="https://i.imgur.com/2NmINYX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br /><br />
 
@@ -78,7 +78,7 @@ I went to Log Analytics Workspaces, then Custom logs tab to add the file I had c
 *Note: Since the actual file is on the VM, I had to create a new file on my personal computer using Notepad, and copy-paste the data from the VM to the new one on my personal desktop. Now I should be able to upload the sample log.<br />
 <br />
 <img src="https://i.imgur.com/McHoTUS.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-To test the logs, I went to the Logs tab under the General section in the LAW, AND RUN THE QUERY: FAILED_RDP_WITH_GEO_CL
+To test the logs, I went to the Logs tab under the General section in the LAW, AND RUN THE QUERY: <i>FAILED_RDP_WITH_GEO_CL</i><br />
 It was named this way when I created the custom log in the previous step.
 <br />
 <br />
