@@ -52,8 +52,8 @@ So I picked the <b>Log Analytics Workspace</b> that I'd prepared earlier.<br />
 <h2>Working inside the VM:</h2>
 <img src="https://i.imgur.com/zTikjB2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br /><br />
-While waiting for other services to connected inside Azure, I turned the firewall of the VM off so that it can be susceptible to ICMP requests from the world to be discovered faster.
-I turned the Firewall state of the Domain Profile as well as Private Profile, Public Profile (See picture below):<br />
+While waiting for other services to connected inside Azure, I turned the firewall of the <b>VM</b> off so that it can be susceptible to ICMP requests from the world to be discovered faster.
+I turned the Firewall state of the <b>Domain Profile</b> as well as <b>Private Profile, Public Profile</b> (See picture below):<br />
 <br />
 <img src="https://i.imgur.com/MHWWw6A.png height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br /><br />
@@ -63,22 +63,22 @@ https://github.com/joshmadakor1/Sentinel-Lab/blob/main/Custom_Security_Log_Expor
 
 I needed to sign up to get the API key from https://ipgeolocation.io/ to be able to convert the IP addresses into longitude and latitude.
 
-After that, I used the Powershell ISE to run the script I had downloaded earlier then saved it on the desktop. I called it “Log_Exporter”.<br />
+After that, I used Powershell ISE to run the script I had downloaded earlier then saved it on the desktop. I called it <i>“Log_Exporter”</i>.<br />
 <br />
 <img src="https://i.imgur.com/h1okYGc.png" height="80%" width="80%" alt="Disk Sanitization Steps"/><br />
 <br><br/>
-All the logs from the run script will be sent to https://ipgeolocation.io/ with the use of the generated API then saved automatically to a file called <i>“failed_rdp”</i>, and to access it I had to type “Run” in Windows search bar and type in this path (Because it’s a hidden file): C:\ProgramData\ <br /><br />
+All the logs from the run script will be sent to https://ipgeolocation.io/ with the use of the generated API then saved automatically to a file called <i>“failed_rdp”</i>, and to access it I had to type <b>“Run”</b> in Windows search bar and type in this path (Because it’s a hidden file): C:\ProgramData\ <br /><br />
 <img src="https://i.imgur.com/2NmINYX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br /><br />
 
 
 
 <h2>Linking VM logs to LAW:</h2>
-I went to Log Analytics Workspaces, then Custom logs tab to add the file I had created earlier “FailedRDP”.
-*Note: Since the actual file is on the VM, I had to create a new file on my personal computer using Notepad, and copy-paste the data from the VM to the new one on my personal desktop. Now I should be able to upload the sample log.<br />
+I went to <b>Log Analytics Workspaces</b>, then <b>Custom logs</b> tab to add the file I had created earlier “FailedRDP”.<br />
+<i>*Note: Since the actual file is on the VM, I had to create a new file on my personal computer using <b>Notepad</b>, and copy-paste the data from the <b>VM</b> to the new one on my personal desktop. Now I should be able to upload the sample log.</i><br />
 <br />
 <img src="https://i.imgur.com/McHoTUS.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-To test the logs, I went to the Logs tab under the General section in the LAW, AND RUN THE QUERY: <i>FAILED_RDP_WITH_GEO_CL</i><br />
+To test the logs, I went to the <b>Logs</b> tab under the General section in the <b>LAW</b>, AND RUN THE QUERY: <i>FAILED_RDP_WITH_GEO_CL</i><br />
 It was named this way when I created the custom log in the previous step.
 <br />
 <br />
@@ -86,11 +86,11 @@ It was named this way when I created the custom log in the previous step.
 <img src="https://i.imgur.com/BKctvmq.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br /><br />
 Since everything is ready, now I had to extract the raw data and show it in a presentable way.
-In Azure Sentinel, I went to the Workbook tab then ran this query (obtained from an open source) which separates the columns of the raw data and arranges them so it’s more relevant and easy to read.
+In <b>Azure Sentinel</b>, I went to the <b>Workbook</b> tab then ran this query (obtained from an open source) which separates the columns of the raw data and arranges them so it’s more relevant and easy to read.
 
 <br /><br />
 
-Query:<br />
+<b>Query:</b><br />
 
 FAILED_RDP_WITH_GEO_CL 
 | extend username = extract(@"username:([^,]+)", 1, RawData), 
@@ -108,8 +108,8 @@ country = extract(@"country:([^,]+)", 1, RawData)
 <br /><br />
 <img src="https://i.imgur.com/Fuk15Vw.png" height="80%" width="80%" alt="Disk Sanitization Steps"/><br/>
 <br /><br />
-Then I changed the visualization to Map. 
-I was playing a bit with the Map settings to refine the presentation of the map.<br/>
+Then I changed the visualization to <b>Map</b>. 
+I was playing a bit with the <b>Map settings</b> to refine the presentation of the map.<br/>
 <br />
 <img src="https://i.imgur.com/5JXKVlG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br><br/>
